@@ -1,21 +1,21 @@
 public class Main {
   public static void main(String[] args) {
-    //System.out.println(binaryToDecimal(1100));
-    System.out.println(decimalToBaseN(8, 6));
+    //test:
+    //System.out.println(baseNToDecimal(1010, 2));
+    //System.out.println(decimalToBaseN(6, 2));
   }
  
   public static void converter(int N, int base1, int base2) {
 
   }
 
-  public static int binaryToDecimal(int bin) {
+  public static int baseNToDecimal(int num, int base1) {
     int sum = 0;
-    String binString = String.format("%d",bin);
+    String binString = String.format("%d",num);
     int pow = 0;
     for(int i = binString.length()-1; i >= 0; i--) {
-      if(binString.charAt(i) == '1') {
-        sum += Math.pow(2, pow);
-      }
+      char temp = binString.charAt(i);
+      sum += (temp - '0') * Math.pow(base1, pow);
       pow++;
     }
     return sum;
@@ -37,4 +37,3 @@ public class Main {
     return output;
   }
 }
-
