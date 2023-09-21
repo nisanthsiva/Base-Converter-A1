@@ -9,7 +9,7 @@ public class Main {
     //System.out.println(baseNToDecimal("ZZ", 36));
 
     //System.out.println(decimalToBaseN(baseNToDecimal(1100, 2), 2));
-    System.out.println(decimalToHexadecimal(22, 16));
+    //System.out.println(decimalToHexadecimal(20, 32));
     //System.out.println(decimalToBaseN(4, 4));
     
     //int testInt = 10;
@@ -65,15 +65,22 @@ public class Main {
     return sum;
   }
   public static String decimalToHexadecimal(int num, int base2) {
-    String temp = String.format("%d", num); // --> "10"
     String output = "";
-    int[] remainder = new int[temp.length()]; // --> 2 --> {0, 1}
-    int index = remainder.length-1; // --> 1
-    //System.out.println(remainder.length-1);
+    int power = 0;
+
+    while(Math.pow(base2, power) <= num) {
+      power++;
+    }
+
+    int[] remainder = new int[power]; 
+    int index = remainder.length-1; 
+
     while(num > 0) {
-      remainder[index] = num % base2; // 1,  
-      //String remainderString = String.format("%d", remainder);
-      //result += remainderString;
+      if(num == 1) {
+        remainder[index] = 1;
+        break;
+      }
+      remainder[index] = num % base2; 
       num /= base2; 
       index--;
     }
@@ -86,13 +93,7 @@ public class Main {
       else {
         output += remainder[i];
       }
-
-      //System.out.println(remainder[i]);
     }
-    /*
-    for(int i = result.length()-1; i >= 0; i--) {
-      output += result.charAt(i);
-    } */
     return output; 
   }
 }
